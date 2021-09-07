@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "576077015837",
+    "firebase_url": "https://adheber.firebaseio.com",
+    "project_id": "adheber",
+    "storage_bucket": "adheber.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576077015837:android:881dceb9350def58904ff4",
+        "android_client_info": {
+          "package_name": "sis.moto.adheber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576077015837-ik6lt5tor39a7d2ejnhp4tsuhbl95f3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sis.moto.adheber",
+            "certificate_hash": "06e559c0b775cbddc914a19467e1e5558fbb31cf"
+          }
+        },
+        {
+          "client_id": "576077015837-oo8f4m3k7irh4dduek0pkpmig7i423ok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYf6AkmR9IerVPGJ7tSM9pDhHw5KdX92Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576077015837-oo8f4m3k7irh4dduek0pkpmig7i423ok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
