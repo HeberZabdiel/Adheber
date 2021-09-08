@@ -1,9 +1,11 @@
-package com.example.adheber.ui.login
+package sis.moto.adheber.ui.login
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-import com.example.adheber.data.LoginDataSource
-import com.example.adheber.data.LoginRepository
+//import android.arch.lifecycle.ViewModel
+//import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import sis.moto.adheber.data.LoginDataSource
+import sis.moto.adheber.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

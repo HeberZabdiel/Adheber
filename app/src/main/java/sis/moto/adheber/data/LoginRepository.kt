@@ -1,6 +1,6 @@
-package com.example.adheber.data
+package sis.moto.adheber.data
 
-import com.example.adheber.data.model.LoggedInUser
+import sis.moto.adheber.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and

@@ -1,22 +1,27 @@
-package com.example.adheber.ui.login
+package sis.moto.adheber.ui.login
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
+//import android.arch.lifecycle.Observer
+//import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.v7.app.AppCompatActivity
+//import android.support.annotation.StringRes
+//import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import com.example.adheber.MainActivity
-import com.example.adheber.databinding.ActivityLoginBinding
+import androidx.annotation.StringRes
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import sis.moto.adheber.MainActivity
+import sis.moto.adheber.R
+import sis.moto.adheber.RegisterActivity
+import sis.moto.adheber.databinding.ActivityLoginBinding
 
-import com.example.adheber.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -96,7 +101,16 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
+                Thread.sleep(4000)
                 loginViewModel.login(username.text.toString(), password.text.toString())
+            }
+
+        }
+        register.apply {
+            register.setOnClickListener {
+                val registry = Intent(this@LoginActivity, RegisterActivity::class.java)
+                startActivity(registry)
+                finish()
             }
         }
     }
@@ -110,8 +124,8 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
-        val inicio = Intent(this, MainActivity::class.java)
-        startActivity(inicio)
+        val start = Intent(this, MainActivity::class.java)
+        startActivity(start)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

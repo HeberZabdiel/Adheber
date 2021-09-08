@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.adheber">
+    package="sis.moto.adheber">
 
     <application
         android:allowBackup="true"
@@ -8,10 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Adheber">
+        android:theme="@style/Theme.Adheber"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity android:name=".StartActivity"/>
+        <activity android:name=".RegisterActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
-            
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

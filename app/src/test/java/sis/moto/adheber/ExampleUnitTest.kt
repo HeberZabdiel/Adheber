@@ -1,4 +1,4 @@
-package com.example.adheber
+package sis.moto.adheber
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.example.adheber.ui.login
+package sis.moto.adheber.ui.login
 
 /**
  * Authentication result : success (user details) or error message.

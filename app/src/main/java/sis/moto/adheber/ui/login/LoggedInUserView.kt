@@ -1,4 +1,4 @@
-package com.example.adheber.ui.login
+package sis.moto.adheber.ui.login
 
 /**
  * User details post authentication that is exposed to the UI

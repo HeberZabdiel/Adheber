@@ -1,4 +1,4 @@
-package com.example.adheber.data
+package sis.moto.adheber.data
 
 /**
  * A generic class that holds a value with its loading status.

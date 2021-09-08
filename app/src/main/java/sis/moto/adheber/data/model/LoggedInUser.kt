@@ -1,4 +1,4 @@
-package com.example.adheber.data.model
+package sis.moto.adheber.data.model
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

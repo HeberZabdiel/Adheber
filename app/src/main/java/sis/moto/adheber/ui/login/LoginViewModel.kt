@@ -1,13 +1,16 @@
-package com.example.adheber.ui.login
+package sis.moto.adheber.ui.login
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+//import android.arch.lifecycle.LiveData
+//import android.arch.lifecycle.MutableLiveData
+//import android.arch.lifecycle.ViewModel
 import android.util.Patterns
-import com.example.adheber.data.LoginRepository
-import com.example.adheber.data.Result
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import sis.moto.adheber.data.LoginRepository
+import sis.moto.adheber.data.Result
 
-import com.example.adheber.R
+import sis.moto.adheber.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
