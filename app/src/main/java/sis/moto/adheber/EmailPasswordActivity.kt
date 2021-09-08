@@ -36,7 +36,7 @@ class EmailPasswordActivity : Activity() {
     }
     // [END on_start_check_user]
 
-    private fun createAccount(email: String, password: String) {
+    public fun createAccount(email: String, password: String) {
         // [START create_user_with_email]
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
