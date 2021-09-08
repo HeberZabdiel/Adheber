@@ -110,6 +110,46 @@
         android:contentDescription="image"
         tools:ignore="HardcodedText" />
 
+    <View
+        android:id="@+id/view_login"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/text_metodo_login"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+    <TextView
+        android:id="@+id/text_metodo_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_weight="6"
+        android:text="@string/other_method"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+    <View
+        android:id="@+id/view_login2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_metodo_login"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
     <ImageView
         android:id="@+id/icon_social_google"
         android:layout_width="50dp"
@@ -123,8 +163,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register"
-        app:srcCompat="@drawable/icon_google1"
-        tools:ignore="ContentDescription,HardcodedText" />
+        app:layout_constraintTop_toBottomOf="@+id/text_metodo_login"
+        app:srcCompat="@drawable/ic_google_plus"
+        tools:ignore="ContentDescription,HardcodedText,VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@
     <string name="invalid_name">Name must be >10 characters</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="invalid_password_confirm">No coinciden ambos passwords </string>
+    <string name="other_method">Usar otro metodo</string>
 
     <string name="login_failed">"Login failed"</string>
     <string name="name">Nombre</string>
