@@ -13,20 +13,20 @@ class SignUpViewModel(private val signUpRepository: SignUpRepository) : ViewMode
     private val _sign_upForm = MutableLiveData<SignUpFormState>()
     val signFormState: LiveData<SignUpFormState> = _sign_upForm
 
-    private val _sign_upResult = MutableLiveData<SignUpResult>()
-    val loginResult: LiveData<SignUpResult> = _sign_upResult
+    private val _signUpResult = MutableLiveData<SignUpResult>()
+    val signUpResult: LiveData<SignUpResult> = _signUpResult
 
-    /*fun sign_up(name: String, email: String, password: String, password_confirm: String) {
+    fun sign_up(name: String, email: String, password: String, password_confirm: String) {
         // can be launched in a separate asynchronous job
-        //val   loginRepository.login(username, password)
+        val result  =  signUpRepository.login(name, password)
 
         if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+            _signUpResult.value =
+                SignUpResult(success = SignUpInUserView(displayName = result.data.displayName))
         } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+            _signUpResult.value = SignUpResult(error = R.string.login_failed)
         }
-    }*/
+    }
 
     fun signUpDataChanged(name: String, email: String, password: String, password_confirm: String) {
         if (!isNameValid(name)) {
