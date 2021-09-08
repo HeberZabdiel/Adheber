@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Adheber"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".StartActivity"/>
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
             android:name=".ui.login.LoginActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">

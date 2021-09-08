@@ -13,6 +13,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
@@ -38,7 +39,13 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
-        val register = binding.register
+        val register = binding.btnRegister
+
+        register.setOnClickListener {
+            val registry = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(registry)
+            finish()
+        }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -100,25 +107,20 @@ class LoginActivity : AppCompatActivity() {
             }
 
             login.setOnClickListener {
-                loading.visibility = View.VISIBLE
-                Thread.sleep(4000)
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
 
         }
-        register.apply {
-            register.setOnClickListener {
-                val registry = Intent(this@LoginActivity, RegisterActivity::class.java)
-                startActivity(registry)
-                finish()
-            }
-        }
+
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
+        val progress: ProgressBar = findViewById(R.id.loading)
+        progress.visibility = View.VISIBLE
+        Thread.sleep(4000)
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
