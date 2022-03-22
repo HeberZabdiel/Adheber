@@ -1,12 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "sis.moto.adheber"
@@ -21,7 +19,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -35,11 +33,16 @@ android {
     buildFeatures {
         viewBinding true
     }
+    dataBinding {
+        enabled = true
+    }
 
 }
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 dependencies {
+
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //noinspection GradleCompatible
@@ -72,4 +75,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    kapt "com.android.databinding:compiler:2.2.0-alphaX"
 }

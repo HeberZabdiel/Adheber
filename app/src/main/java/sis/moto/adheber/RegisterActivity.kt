@@ -1,10 +1,11 @@
 package sis.moto.adheber
 
-//import android.support.v7.app.AppCompatActivity
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -12,7 +13,11 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -24,22 +29,28 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import sis.moto.adheber.databinding.ActivityMainBinding
+import sis.moto.adheber.databinding.ActivityRegisterBinding
 import sis.moto.adheber.ui.login.*
-import kotlinx.android.synthetic.main.activity_register.*
+//import kotlinx.android.synthetic.main.activity_register.*
 
 
 @Suppress("DEPRECATION")
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity() : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var signUpViewModel: SignUpViewModel
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var binding: ActivityRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        //setContentView(R.layout.activity_register)
         // [START config_signin]
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(R.string.client_id))
             .requestEmail()
             .build()
 
@@ -53,33 +64,33 @@ class RegisterActivity : AppCompatActivity() {
         signUpViewModel.signFormState.observe(this@RegisterActivity, Observer {
             val signUpState = it ?: return@Observer
             // disable login button unless both username / password is valid
-            sign_up.isEnabled = signUpState.isDataValid
+            binding.signUp.isEnabled = signUpState.isDataValid
             if (signUpState.nameError != null) {
-                name.error = getString(signUpState.nameError)
+                binding.name.error = getString(signUpState.nameError)
             }
             if (signUpState.emailError != null) {
-                email.error = getString(signUpState.emailError)
+                binding.email.error = getString(signUpState.emailError)
             }
             if (signUpState.passwordError != null) {
-                password.error = getString(signUpState.passwordError)
+                binding.password.error = getString(signUpState.passwordError)
             }
             if (signUpState.passwordConfirmError != null) {
-                password_confirm.error = getString(signUpState.passwordConfirmError)
+                binding.passwordConfirm.error = getString(signUpState.passwordConfirmError)
             }
         })
         signUpViewModel.signUpResult.observe(this@RegisterActivity, Observer {
             val signUpResult = it ?: return@Observer
-            loading_sign_up.visibility = View.GONE
+            binding.loadingSignUp.visibility = View.GONE
             if (signUpResult.error != null) {
                 showSignUpFailed(signUpResult.error)
             }
             if (signUpResult.success != null) {
-                sign_up.isEnabled = true
-                sign_up.setOnClickListener {
+               binding.signUp.isEnabled = true
+                binding.signUp.setOnClickListener {
                     updateUiWithUser(1,
                         signUpResult.success,
-                        email.text.toString(),
-                        password.text.toString()
+                        binding.email.text.toString(),
+                        binding.password.text.toString()
                     )
                 }
             }
@@ -88,64 +99,65 @@ class RegisterActivity : AppCompatActivity() {
             //Complete and destroy login activity once successful
             //finish()
         })
-        name.afterTextChanged {
+        binding.name.afterTextChanged {
             signUpViewModel.signUpDataChanged(
-                name.text.toString(),
-                email.text.toString(),
-                password.text.toString(),
-                password_confirm.text.toString()
+                binding.name.text.toString(),
+                binding.email.text.toString(),
+                binding.password.text.toString(),
+                binding.passwordConfirm.text.toString()
             )
             signUpViewModel.sign_up(
-                name.text.toString(), email.text.toString(),
-                password.text.toString(), password_confirm.text.toString()
+                binding.name.text.toString(), binding.email.text.toString(),
+                binding.password.text.toString(), binding.passwordConfirm.text.toString()
             )
         }
-        email.afterTextChanged {
+        binding.email.afterTextChanged {
             signUpViewModel.signUpDataChanged(
-                name.text.toString(),
-                email.text.toString(),
-                password.text.toString(),
-                password_confirm.text.toString()
+                binding.name.text.toString(),
+                binding.email.text.toString(),
+                binding.password.text.toString(),
+                binding.passwordConfirm.text.toString()
             )
             signUpViewModel.sign_up(
-                name.text.toString(), email.text.toString(),
-                password.text.toString(), password_confirm.text.toString()
-            )
-        }
-        password.afterTextChanged {
-            signUpViewModel.signUpDataChanged(
-                name.text.toString(),
-                email.text.toString(),
-                password.text.toString(),
-                password_confirm.text.toString()
-            )
-            signUpViewModel.sign_up(
-                name.text.toString(), email.text.toString(),
-                password.text.toString(), password_confirm.text.toString()
+                binding.name.text.toString(), binding.email.text.toString(),
+                binding.password.text.toString(), binding.passwordConfirm.text.toString()
             )
         }
 
-        password_confirm.apply {
+        binding.password.afterTextChanged {
+            signUpViewModel.signUpDataChanged(
+                binding.name.text.toString(),
+                binding.email.text.toString(),
+                binding.password.text.toString(),
+                binding.passwordConfirm.text.toString()
+            )
+            signUpViewModel.sign_up(
+                binding.name.text.toString(), binding.email.text.toString(),
+                binding.password.text.toString(), binding.passwordConfirm.text.toString()
+            )
+        }
+
+        binding.passwordConfirm.apply {
             afterTextChanged {
                 signUpViewModel.signUpDataChanged(
-                    name.text.toString(),
-                    email.text.toString(),
-                    password.text.toString(),
-                    password_confirm.text.toString()
+                    binding.name.text.toString(),
+                    binding.email.text.toString(),
+                    binding.password.text.toString(),
+                    binding.passwordConfirm.text.toString()
                 )
                 signUpViewModel.sign_up(
-                    name.text.toString(), email.text.toString(),
-                    password.text.toString(), password_confirm.text.toString()
+                    binding.name.text.toString(), binding.email.text.toString(),
+                    binding.password.text.toString(), binding.passwordConfirm.text.toString()
                 )
             }
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         signUpViewModel.sign_up(
-                            name.text.toString(),
-                            email.text.toString(),
-                            password.text.toString(),
-                            password_confirm.text.toString()
+                            binding.name.text.toString(),
+                            binding.email.text.toString(),
+                            binding.password.text.toString(),
+                            binding.passwordConfirm.text.toString()
                         )
                 }
                 false
@@ -158,7 +170,7 @@ class RegisterActivity : AppCompatActivity() {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
-        loading_sign_up.visibility = View.VISIBLE
+        binding.loadingSignUp.visibility = View.VISIBLE
         if(tipo == 1) {
             // [START sign_in_with_email]
             auth.createUserWithEmailAndPassword(emailText, passwordText)
@@ -293,4 +305,5 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     // [END onactivityresult]
+
 }

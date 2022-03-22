@@ -12,7 +12,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="invalid_password_confirm">No coinciden ambos passwords </string>
     <string name="other_method">Usar otro metodo</string>
-
     <string name="login_failed">"Login failed"</string>
     <string name="name">Nombre</string>
+    <string name="client_id">576077015837-oo8f4m3k7irh4dduek0pkpmig7i423ok.apps.googleusercontent.com</string>
 </resources>
